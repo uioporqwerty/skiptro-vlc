@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: |
           mkdir dist
-          vlc -I luaintf --lua-intf luac --lua-config 'luac={input="${GITHUB_WORKSPACE}/src/skiptro_intf.lua",output="${GITHUB_WORKSPACE}/dist/skiptro_intf.luac"}'
+          vlc -I luaintf --lua-intf luac --lua-config 'luac={input="${{ env.GITHUB_WORKSPACE }}/src/skiptro_intf.lua",output="${{ env.GITHUB_WORKSPACE }}/dist/skiptro_intf.luac"}'
 
       - name: Upload plugin
         uses: actions/upload-artifact@v2
