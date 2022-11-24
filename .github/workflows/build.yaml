@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install VLC
-        run: sudo apt-get install vlc
+        run: brew install vlc --cask
 
       - name: Extract version from tag
         if: startsWith(github.ref, 'refs/tags/')
