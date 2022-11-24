@@ -31,6 +31,7 @@ jobs:
       - name: Build
         run: |
           mkdir dist
+          vlc -I luaintf --lua-intf luac --lua-config 'luac={input="${{ github.workspace }}/src/skiptro_ext.lua",output="${{ github.workspace }}/dist/skiptro_ext.luac"}'
           vlc -I luaintf --lua-intf luac --lua-config 'luac={input="${{ github.workspace }}/src/skiptro_intf.lua",output="${{ github.workspace }}/dist/skiptro_intf.luac"}'
 
       - name: Upload plugin

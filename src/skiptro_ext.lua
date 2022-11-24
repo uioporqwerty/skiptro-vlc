@@ -70,7 +70,7 @@ local extension_version = "1.0.0"
 
 function descriptor()
 	return {
-		title = "Skiptro",
+		title = "Skiptro v"..extension_version,
 		version = extension_version,
 		author = "Nitish Sachar (uioporqwerty)",
 		url = 'https://skiptro.app',
