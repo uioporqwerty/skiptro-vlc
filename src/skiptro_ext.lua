@@ -1,4 +1,5 @@
---- logging.lua ---
+---@diagnostic disable: lowercase-global
+--#region Logging
 local LogLevel = { DEBUG = 0,
     INFO = 1,
     WARN = 2,
@@ -62,12 +63,10 @@ end
 function Logger.error(message)
     Logger.log(LogLevel.ERROR, message)
 end
---- END logging.lua ---
-
---- END IMPORTS ---
+--#endregion
 
 local logger = Logger.new(LogLevel.DEBUG)
-local extension_version = "1.0"
+local extension_version = "1.0.0"
 
 function descriptor()
 	return {

@@ -1,0 +1,40 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "*"
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install VLC
+        run: sudo apt-get install vlc
+
+      - name: Extract version from tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: damienaicheh/extract-version-from-tag-action@v1.0.0
+
+      - name: Set version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          sed -i "s/1.0.0/$MAJOR.$MINOR.$PATCH/" ./src/skiptro_ext.lua
+
+      - name: Build
+        run: |
+          mkdir dist
+          vlc -I luaintf --lua-intf luac --lua-config 'luac={input="$GITHUB_WORKSPACE/src/skiptro_intf.lua",output="$GITHUB_WORKSPACE/dist/skiptro_intf.luac"}'
+
+      - name: Upload plugin
+        uses: actions/upload-artifact@v2
+        with:
+          name: skiptro-vlc
+          path: dist
