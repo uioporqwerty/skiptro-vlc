@@ -31,6 +31,7 @@ jobs:
       - name: Build
         run: |
           mkdir dist
+          cp "${{ github.workspace }}/src/skiptro_ext.lua" dist/
           cat "${{ github.workspace }}/src/skiptro_ext.lua"
 
           vlc -I luaintf --lua-intf luac --lua-config 'luac={input="${{ github.workspace }}/src/skiptro_ext.lua",output="${{ github.workspace }}/dist/skiptro_ext.luac"}'
