@@ -19,6 +19,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set platform
+        run: |
+          if [ ${{ matrix.os }} == 'macOS-latest' ]; then
+            echo "platform=linux" >> $GITHUB_ENV
+          elif [ ${{ matrix.os }} == 'ubuntu-latest' ]; then
+            echo "platform=macos" >> $GITHUB_ENV
+          fi
+
       - name: Install VLC
         run: |
           if [ ${{ matrix.os }} == 'macOS-latest' ]; then
@@ -48,5 +56,5 @@ jobs:
       - name: Upload plugin
         uses: actions/upload-artifact@v2
         with:
-          name: "skiptro-vlc-${{ matrix.os }}"
+          name: "skiptro-vlc-${{ env.platform }}"
           path: dist
