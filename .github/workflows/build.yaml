@@ -42,7 +42,7 @@ jobs:
       - name: Set version
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          sed -i "s/1.0.0/$MAJOR.$MINOR.$PATCH/" ./src/skiptro_ext.lua
+          sed -i'' "s/1.0.0/$MAJOR.$MINOR.$PATCH/" ./src/skiptro_ext.lua
 
       - name: Build
         run: |
